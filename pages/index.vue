@@ -1,5 +1,6 @@
 <template>
   <NuxtLayout>
+    <CanvasLoader />
     <LayoutSection
       class="w-screen h-screen bg-gradient-to-r from-[#108dc7] to-[#ef8e38]"
     >
