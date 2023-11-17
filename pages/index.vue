@@ -24,7 +24,7 @@
           :to="{ opacity: 1, y: '0' }"
           class="relative w-full h-full text-center"
         >
-          <CanvasWrapper>
+          <CanvasWrapper class="canvasImage">
             <TresPerspectiveCamera
               :args="[20, 20, 0.1, 20]"
               :position="[0, 0, 2]"
@@ -49,6 +49,11 @@
           </CanvasWrapper>
         </CanvasAnimationWrapper>
       </LayoutContainer>
+    </LayoutSection>
+    <LayoutSection
+      class="w-screen h-screen bg-gradient-to-r from-[#108dc7] to-[#ef8e38]"
+    >
+      <LayoutContainer> </LayoutContainer>
     </LayoutSection>
   </NuxtLayout>
 </template>
