@@ -58,7 +58,18 @@
   </NuxtLayout>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+useHead({
+  meta: [
+    { name: "keywords", content: "Web Development, Custom Web Apps" },
+    {
+      name: "description",
+      content:
+        "Web Developer Passionate About Building Fun and Functional Web Applications",
+    },
+  ],
+});
+</script>
 
 <style scoped>
 @media (orientation: portrait) {
