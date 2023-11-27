@@ -20,7 +20,7 @@
         fill="currentFill"
       />
     </svg>
-    <span class="sr-only">Loading...</span>
+    <span class="sr-only">Loading... {{ progress }}</span>
   </div>
 </template>
 

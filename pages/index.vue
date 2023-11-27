@@ -1,5 +1,6 @@
 <template>
   <NuxtLayout>
+    <CanvasLoader />
     <LayoutSection class="w-screen h-screen">
       <LayoutContainer
         id="layout-container"
