@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import { gsap } from "gsap";
+import { generateAnimation } from "#imports";
 import { ref, onMounted } from "vue";
 const props = defineProps({
   fromTo: {
@@ -21,7 +21,11 @@ const props = defineProps({
 const wrapper = ref(null);
 
 onMounted(() => {
-  gsap.fromTo(wrapper.value, props.fromTo, props.to);
+  generateAnimation({
+    value: wrapper.value,
+    fromTo: props.fromTo,
+    to: props.to,
+  });
 });
 </script>
 

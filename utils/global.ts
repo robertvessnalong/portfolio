@@ -1,3 +1,4 @@
+import { gsap } from "gsap";
 import type { Ref, ComputedRef } from "vue";
 import { WebGLRenderer, PerspectiveCamera, Camera } from "three";
 
@@ -5,6 +6,21 @@ interface onWindowResizeProps {
   renderer: Ref<WebGLRenderer>;
   camera: Ref<PerspectiveCamera> | ComputedRef<Camera | undefined>;
   responsiveSize: Ref<number>;
+}
+
+interface GenerateAnimationProps {
+  value: Ref<HTMLElement> | null;
+  fromTo: {
+    x?: string;
+    y?: string;
+    opacity?: number;
+  };
+  to: {
+    x?: string;
+    y?: string;
+    opacity?: number;
+    duration?: number;
+  };
 }
 
 export const onWindowResize = ({
@@ -30,4 +46,12 @@ export const onWindowResize = ({
       responsiveSize.value = 0.18;
     }
   }
+};
+
+export const generateAnimation = ({
+  value,
+  fromTo,
+  to,
+}: GenerateAnimationProps) => {
+  gsap.fromTo(value, fromTo, to);
 };
