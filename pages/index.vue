@@ -1,8 +1,7 @@
 <template>
-  <NuxtLayout
-    class="w-screen h-screen bg-gradient-to-r from-[#108dc7] to-[#ef8e38]"
-  >
-    <LayoutSection class="w-full h-full">
+  <NuxtLayout>
+    <CanvasLoader />
+    <LayoutSection class="w-screen h-screen">
       <LayoutContainer
         id="layout-container"
         class="h-full w-full flex justify-center content-center relative flex-col"
