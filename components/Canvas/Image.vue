@@ -1,6 +1,6 @@
 <template>
   <suspense>
-    <primitive :object="newScene"></primitive>
+    <primitive :object="new THREE.Scene()"></primitive>
   </suspense>
 </template>
 
@@ -9,13 +9,11 @@ import { onBeforeMount } from "vue";
 import { useGLTF } from "@tresjs/cientos";
 import * as THREE from "three";
 
-const newScene = new THREE.Scene();
-
 onBeforeMount(async () => {
   const path = "/images/robert.glb";
   const { scene } = await useGLTF(path, { draco: true });
   scene.scale.set(0.1, 0.1, 0.1);
-  newScene.add(scene);
+  new THREE.Scene().add(scene);
 });
 </script>
 
