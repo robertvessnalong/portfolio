@@ -1,30 +1,54 @@
 <template>
-  <div ref="wrapper" class="wrapper">
+  <TresGroup ref="group" :position="position">
     <slot />
-  </div>
+  </TresGroup>
 </template>
 
 <script lang="ts" setup>
-import { generateAnimation } from "#imports";
+import TresGroup from "@tresjs/core";
 import { ref, onMounted } from "vue";
-const props = defineProps({
-  fromTo: {
-    type: Object, // Assuming fromTo is an object
-    required: true,
-  },
-  to: {
-    type: Object, // Assuming to is an object
-    required: true,
+const {
+  position,
+  to = 0,
+  add = false,
+  direction = "x",
+} = defineProps({
+  position: Array,
+  to: Number,
+  add: Boolean,
+  direction: {
+    type: String,
   },
 });
 
-const wrapper = ref(null);
+console.log(position);
+
+const { onBeforeLoop, onAfterLoop } = useRenderLoop();
+
+const group = ref();
+
+const animateText = (
+  textRef: Ref<any>,
+  delta: number,
+  speedMultiplier = 3.5
+) => {
+  if (textRef.value) {
+    const newPosition = add
+      ? textRef.value.position[direction] + delta * speedMultiplier
+      : textRef.value.position[direction] - delta * speedMultiplier;
+
+    if (add && newPosition <= 0) {
+      textRef.value.position[direction] = newPosition;
+    } else if (!add && newPosition >= 0) {
+      textRef.value.position[direction] = newPosition;
+    }
+  }
+};
 
 onMounted(() => {
-  generateAnimation({
-    value: wrapper.value,
-    fromTo: props.fromTo,
-    to: props.to,
+  // Use a loop for common animation logic
+  onBeforeLoop(({ delta, elapsed }) => {
+    animateText(group, delta);
   });
 });
 </script>

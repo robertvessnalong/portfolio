@@ -5,27 +5,14 @@ import { WebGLRenderer, PerspectiveCamera, Camera } from "three";
 interface onWindowResizeProps {
   renderer: Ref<WebGLRenderer>;
   camera: Ref<PerspectiveCamera> | ComputedRef<Camera | undefined>;
+  size: Ref<number>;
   responsiveSize: Ref<number>;
-}
-
-interface GenerateAnimationProps {
-  value: Ref<HTMLElement> | null;
-  fromTo: {
-    x?: string;
-    y?: string;
-    opacity?: number;
-  };
-  to: {
-    x?: string;
-    y?: string;
-    opacity?: number;
-    duration?: number;
-  };
 }
 
 export const onWindowResize = ({
   renderer,
   camera,
+  size,
   responsiveSize,
 }: onWindowResizeProps) => {
   const cameraValue = camera.value;
@@ -35,23 +22,16 @@ export const onWindowResize = ({
     cameraValue.aspect = window.innerWidth / window.innerHeight;
     cameraValue.updateProjectionMatrix();
     renderer.value.setSize(window.innerWidth, window?.innerHeight, false);
+    const topSize = ref(size);
 
     if (window.innerWidth >= 1024) {
-      responsiveSize.value = 0.5;
+      responsiveSize.value = topSize.value;
     } else if (window.innerWidth >= 768) {
       responsiveSize.value = 0.3;
     } else if (window.innerWidth >= 465) {
       responsiveSize.value = 0.2;
     } else {
-      responsiveSize.value = 0.18;
+      responsiveSize.value = 0.12;
     }
   }
-};
-
-export const generateAnimation = ({
-  value,
-  fromTo,
-  to,
-}: GenerateAnimationProps) => {
-  gsap.fromTo(value, fromTo, to);
 };

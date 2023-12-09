@@ -3,49 +3,35 @@
     <LayoutSection class="w-screen h-screen">
       <LayoutContainer
         id="layout-container"
-        class="h-full w-full flex justify-center content-center relative flex-col"
+        class="max-w-full h-full w-full flex justify-center content-center relative flex-col"
       >
-        <!-- Higher Text -->
-        <CanvasAnimationWrapper
-          :from-to="{ opacity: 0, x: '-100%' }"
-          :to="{ opacity: 1, x: '0', duration: 0.6 }"
-          class="content-wrapper block absolute left-0 top-1 w-full text-center"
-        >
-          <CanvasWrapper>
-            <TresPerspectiveCamera :position="[0, 0, 1.3]" />
-            <CanvasText text="Robert" size="0.5" />
-          </CanvasWrapper>
-        </CanvasAnimationWrapper>
-        <!-- Image -->
-        <CanvasAnimationWrapper
-          :from-to="{ opacity: 0, y: '100%' }"
-          :to="{ opacity: 1, y: '0' }"
-          class="relative w-full h-full text-center"
-        >
-          <CanvasWrapper class="canvasImage">
-            <TresPerspectiveCamera
-              :args="[20, 20, 0.1, 20]"
-              :position="[0, 0, 2]"
-            />
-            <TresHemisphereLight :args="[0xffffbb, 0x080820, 1]" />
-            <TresDirectionalLight :arg="[0xffffff, 1]" />
-            <CanvasImage />
-          </CanvasWrapper>
-        </CanvasAnimationWrapper>
-        <!-- Lower Text -->
-        <CanvasAnimationWrapper
-          :from-to="{ opacity: 0, x: '100%' }"
-          :to="{ opacity: 1, x: '0', duration: 0.6 }"
-          class="content-wrapper block absolute left-0 bottom-0 w-full text-center"
-        >
-          <CanvasWrapper>
-            <TresPerspectiveCamera
-              :args="[30, 20, 0.1, 20]"
-              :position="[0, 0, 2]"
-            />
-            <CanvasText text="Long" size="0.5" />
-          </CanvasWrapper>
-        </CanvasAnimationWrapper>
+        <CanvasWrapper window-size>
+          <TresPerspectiveCamera :position="[0, 0, 1.15]" />
+          <TresHemisphereLight :args="[0xffffbb, 0x080820, 1]" />
+          <TresDirectionalLight :arg="[0xffffff, 1]" />
+          <!-- <OrbitControls /> -->
+          <CanvasAnimationWrapper :position="[-2, 0, 0]" add>
+            <TresMesh :position="[0, 0.2, -0.5]" ref="textRef">
+              <CanvasText text="Robert" :size="0.3" />
+            </TresMesh>
+          </CanvasAnimationWrapper>
+          <CanvasAnimationWrapper :position="[0, -2, 0]" add :direction="'y'">
+            <TresMesh :position="[0, 0, -0.3]">
+              <CanvasImage />
+            </TresMesh>
+          </CanvasAnimationWrapper>
+          <CanvasAnimationWrapper :position="[2, 0, 0]">
+            <TresMesh :position="[0, -0.25, 0]">
+              <CanvasText
+                text="Long"
+                :size="0.2"
+                center
+                :height="0"
+                :bevel-thickness="0.12"
+              />
+            </TresMesh>
+          </CanvasAnimationWrapper>
+        </CanvasWrapper>
       </LayoutContainer>
     </LayoutSection>
     <LayoutSection
