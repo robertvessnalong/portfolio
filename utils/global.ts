@@ -27,7 +27,7 @@ export const onWindowResize = ({
     if (window.innerWidth >= 1024) {
       responsiveSize.value = topSize.value;
     } else if (window.innerWidth >= 768) {
-      responsiveSize.value = 0.3;
+      responsiveSize.value = 0.25;
     } else if (window.innerWidth >= 465) {
       responsiveSize.value = 0.2;
     } else {

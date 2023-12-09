@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout>
-    <LayoutSection class="w-screen h-screen">
+    <LayoutSection class="w-screen h-[70vh] sm:h-screen">
       <LayoutContainer
         id="layout-container"
         class="max-w-full h-full w-full flex justify-center content-center relative flex-col"
@@ -12,7 +12,12 @@
           <!-- <OrbitControls /> -->
           <CanvasAnimationWrapper :position="[-2, 0, 0]" add>
             <TresMesh :position="[0, 0.2, -0.5]" ref="textRef">
-              <CanvasText text="Robert" :size="0.3" />
+              <CanvasText
+                text="Robert"
+                :size="0.3"
+                :height="0"
+                :bevel-thickness="0.12"
+              />
             </TresMesh>
           </CanvasAnimationWrapper>
           <CanvasAnimationWrapper :position="[0, -2, 0]" add :direction="'y'">
@@ -43,6 +48,7 @@
 </template>
 
 <script lang="ts" setup>
+
 useHead({
   meta: [
     { name: "keywords", content: "Web Development, Custom Web Apps" },
