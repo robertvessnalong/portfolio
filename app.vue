@@ -7,7 +7,7 @@ useHead({
   meta: [
     {
       name: "apple-mobile-web-app-status-bar-style",
-      content: "bg-gradient-to-r from-[#108dc7] to-[#ef8e38]",
+      content: "black-translucent",
     },
   ],
   titleTemplate: (titleChunk) => {
