@@ -9,7 +9,7 @@
           <TresPerspectiveCamera :position="[0, 0, 1.15]" />
           <TresHemisphereLight :args="[0xffffbb, 0x080820, 1]" />
           <TresDirectionalLight :arg="[0xffffff, 1]" />
-          <!-- <OrbitControls /> -->
+          <OrbitControls />
           <CanvasAnimationWrapper :position="[-2, 0, 0]" add>
             <TresMesh :position="[0, 0.2, -0.5]" ref="textRef">
               <CanvasText
@@ -21,7 +21,7 @@
             </TresMesh>
           </CanvasAnimationWrapper>
           <CanvasAnimationWrapper :position="[0, -2, 0]" add :direction="'y'">
-            <TresMesh :position="[0, 0, -0.3]">
+            <TresMesh :position="[0, 0, -5]">
               <CanvasImage />
             </TresMesh>
           </CanvasAnimationWrapper>
@@ -48,7 +48,6 @@
 </template>
 
 <script lang="ts" setup>
-
 useHead({
   meta: [
     { name: "keywords", content: "Web Development, Custom Web Apps" },
