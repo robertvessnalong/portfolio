@@ -5,7 +5,22 @@
         id="layout-container"
         class="max-w-full h-full w-full flex justify-center content-center relative flex-col"
       >
-        <CanvasWrapper window-size>
+        <Transition
+          name="fade-overlay"
+          enter-active-class="opacity-1 transition-opacity duration-200"
+          leave-active-class="opacity-0 transition-opacity duration-200"
+        >
+          <div
+            v-show="!hasFinishLoading"
+            class="absolute bg-grey-600 t-0 l-0 w-full h-full z-20 flex justify-center items-center text-black font-mono"
+          >
+            <div class="w-200px">
+              Loading... {{ progress }} %
+              <i class="i-ic-twotone-catching-pokemon animate-rotate-in"></i>
+            </div>
+          </div>
+        </Transition>
+        <CanvasWrapper window-size v-show="hasFinishLoading">
           <TresPerspectiveCamera :position="[0, 0, 1.15]" />
           <TresHemisphereLight :args="[0xffffbb, 0x080820, 1]" />
           <TresDirectionalLight :arg="[0xffffff, 1]" />
@@ -48,6 +63,10 @@
 </template>
 
 <script lang="ts" setup>
+import { useProgress } from "@tresjs/cientos";
+
+const { hasFinishLoading, progress, items } = await useProgress();
+
 useHead({
   meta: [
     { name: "keywords", content: "Web Development, Custom Web Apps" },
